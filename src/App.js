@@ -1,37 +1,22 @@
 import "./App.css";
-
+import {BrowserRouter as Router, Routes,Route} from "react-router-dom"
 // Material UI imports
-import Chip from "@mui/material/Chip";
-import Paper from "@mui/material/Paper";
-import LockIcon from "@mui/icons-material/Lock";
 
-
-import Login from "./formControl/login";
+import Login from "./formControl/login"; 
+import Landing from "./formControl/landing"; 
 
 
 
 function App() {
- 
-
   return (
-    <div className="outerbox">
-    <div className="App" >
-      
-      <Paper elevation={3} style={{ padding: "10px", paddingBottom: "50px" }}>
-        <div align="center">
-          
-            <Chip
-              icon={<LockIcon />}
-              label="Log In"
-              variant="outlined"
-              color="info"
-            />
-        </div>
-
-         <Login /> 
-      </Paper>
-    </div>
-    </div>
+    <Router>
+    
+          <Routes>
+          <Route path="/" element={<Login/>}/>
+          <Route path="/landing" element={<Landing/>}/>
+          </Routes>
+        
+    </Router>
   );
 }
 

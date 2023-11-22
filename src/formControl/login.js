@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom";
+import Chip from "@mui/material/Chip";
+import Paper from "@mui/material/Paper";
+import LockIcon from "@mui/icons-material/Lock";
 import "./login.css"
 import "../index.css"
 // Material UI Imports
@@ -25,6 +29,8 @@ const isEmail = (email) =>
   /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = React.useState(false);
 
   //Inputs
@@ -49,7 +55,7 @@ export default function Login() {
   // Label for Checkbox
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-  // Validation for onBlur Email
+  // Validation for Email
   const handleEmail = () => {
     console.log(isEmail(emailInput));
     if (!isEmail(emailInput)) {
@@ -60,7 +66,7 @@ export default function Login() {
     setEmailError(false);
   };
 
-  // Validation for onBlur Password
+  // Validation for Password
   const handlePassword = () => {
     var lowerCase = /[a-z]/g;
     var upperCase = /[A-Z]/g;
@@ -102,16 +108,24 @@ export default function Login() {
     }
     setFormValid(null);
 
-    // Proceed to use the information passed
+    // Proceed t
     console.log("Email : " + emailInput);
     console.log("Password : " + passwordInput);
     console.log("Remember : " + rememberMe);
 
     //Show Successfull Submittion
     setSuccess("Form Submitted Successfully");
+    navigate("/landing");
   };
 
   return (
+    <div className="outerbox">
+      <div className="App" >
+    <Paper elevation={3} style={{ padding: "10px", paddingBottom: "50px" }}>
+      <div align="center">
+        <Chip icon={<LockIcon />} label="Log In" variant="outlined" color="info" />
+      </div>
+
     <div className="email">
       <div style={{ marginTop: "5px" }}>
         <TextField
@@ -203,6 +217,9 @@ export default function Login() {
       <div style={{ marginTop: "7px", fontSize: "10px" }} margin="left">
         
       </div>
+    </div>
+    </Paper>
+    </div>
     </div>
   );
 }
